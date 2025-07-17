@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLanguage } from '@/contexts/LanguageContext'
+import { useLanguage } from '@/hooks/useLanguage'
 import Header from '@/components/layout/Header'
 import Sidebar from '@/components/layout/Sidebar'
 import DashboardGrid from '@/components/dashboard/DashboardGrid'

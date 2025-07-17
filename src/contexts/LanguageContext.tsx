@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useContext, useState, ReactNode } from 'react'
 
 type Language = 'ar' | 'en'
@@ -20,6 +21,9 @@ const translations = {
     calendar: 'التقويم',
     analytics: 'التحليلات',
     settings: 'الإعدادات',
+    mail: 'البريد',
+    events: 'الفعاليات',
+    notifications: 'الإشعارات',
     
     // Dashboard
     welcome: 'مرحباً بك في HYPER',
@@ -28,28 +32,49 @@ const translations = {
     teamMessages: 'رسائل الفريق',
     smartNotifications: 'الإشعارات الذكية',
     upcomingEvents: 'الفعاليات القادمة',
+    latestMail: 'أحدث البريد',
+    recentNotifications: 'الإشعارات الأخيرة',
     
     // Status
     inProgress: 'قيد التنفيذ',
     completed: 'مكتمل',
     pending: 'معلق',
     urgent: 'عاجل',
+    warning: 'تحذير',
+    success: 'نجح',
     
     // Actions
     viewAll: 'عرض الكل',
     newTask: 'مهمة جديدة',
     newProject: 'مشروع جديد',
     search: 'بحث...',
+    viewMail: 'عرض البريد',
+    openProject: 'فتح المشروع',
+    notifyDepartment: 'إشعار القسم',
     
     // Pulse AI
     pulseAI: 'Pulse AI',
     aiSummary: 'ملخص ذكي',
     suggestions: 'اقتراحات',
+    showSummary: 'عرض الملخص',
     
     // Time
     today: 'اليوم',
     thisWeek: 'هذا الأسبوع',
-    overdue: 'متأخر'
+    overdue: 'متأخر',
+    
+    // Fields
+    subject: 'الموضوع',
+    assignedTo: 'مُعيّن إلى',
+    status: 'الحالة',
+    date: 'التاريخ',
+    projectName: 'اسم المشروع',
+    phase: 'المرحلة',
+    progress: 'التقدم',
+    title: 'العنوان',
+    time: 'الوقت',
+    message: 'الرسالة',
+    type: 'النوع'
   },
   en: {
     // Navigation
@@ -61,6 +86,9 @@ const translations = {
     calendar: 'Calendar',
     analytics: 'Analytics',
     settings: 'Settings',
+    mail: 'Mail',
+    events: 'Events',
+    notifications: 'Notifications',
     
     // Dashboard
     welcome: 'Welcome to HYPER',
@@ -69,34 +97,55 @@ const translations = {
     teamMessages: 'Team Messages',
     smartNotifications: 'Smart Notifications',
     upcomingEvents: 'Upcoming Events',
+    latestMail: 'Latest Mail',
+    recentNotifications: 'Recent Notifications',
     
     // Status
     inProgress: 'In Progress',
     completed: 'Completed',
     pending: 'Pending',
     urgent: 'Urgent',
+    warning: 'Warning',
+    success: 'Success',
     
     // Actions
     viewAll: 'View All',
     newTask: 'New Task',
     newProject: 'New Project',
     search: 'Search...',
+    viewMail: 'View Mail',
+    openProject: 'Open Project',
+    notifyDepartment: 'Notify Department',
     
     // Pulse AI
     pulseAI: 'Pulse AI',
     aiSummary: 'AI Summary',
     suggestions: 'Suggestions',
+    showSummary: 'Show Summary',
     
     // Time
     today: 'Today',
     thisWeek: 'This Week',
-    overdue: 'Overdue'
+    overdue: 'Overdue',
+    
+    // Fields
+    subject: 'Subject',
+    assignedTo: 'Assigned To',
+    status: 'Status',
+    date: 'Date',
+    projectName: 'Project Name',
+    phase: 'Phase',
+    progress: 'Progress',
+    title: 'Title',
+    time: 'Time',
+    message: 'Message',
+    type: 'Type'
   }
 }
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
+export const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
+export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [language, setLanguage] = useState<Language>('ar')
   const isRTL = language === 'ar'
 
@@ -111,12 +160,4 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       </div>
     </LanguageContext.Provider>
   )
-}
-
-export function useLanguage() {
-  const context = useContext(LanguageContext)
-  if (context === undefined) {
-    throw new Error('useLanguage must be used within a LanguageProvider')
-  }
-  return context
 }
