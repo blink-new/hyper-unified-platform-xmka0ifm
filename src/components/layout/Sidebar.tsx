@@ -27,7 +27,7 @@ const navigationItems = [
 ]
 
 export default function Sidebar() {
-  const { t, isRTL } = useLanguage()
+  const { t, isRTL, language } = useLanguage()
   const [activeItem, setActiveItem] = React.useState('dashboard')
 
   return (
